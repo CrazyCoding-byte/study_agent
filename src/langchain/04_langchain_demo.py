@@ -15,4 +15,9 @@ few_shot_template=FewShotPromptTemplate(
     examples=examples_data, #示例数据
     prefix="告知我单词的反义词,我提供如下示例:", #示例之前的提示词
     suffix="基于前面的示例,请告诉我单词{word}的反义词是什么?", #示例之后的提示词
+    input_variables=['word'] #声明在前缀和后缀中所需要注入的变量名
 )
+#拼接
+prompt_text=few_shot_template.invoke(input={"word": "左"}).to_string()
+res=model.invoke(input=prompt_text)
+print(res.content)

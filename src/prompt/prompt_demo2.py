@@ -45,10 +45,10 @@ for key,value in example_data.items():
             {"role": "assistant", "content": key}
         )
 for q in questions:
-    response=client.chat.completions.create(
+    response = client.chat.completions.create(
         model="qwen3:4b",
-        messages=messages+[
-            {"role": "user", "content": f"按照上述示例，回答这2个句子的情况。句子1: [{q[0]}]，句子2: [{q[1]}]"}messages=messages + [{"role": "user", "content": f"句子1：[{q[0]}]，句子2：[{q[1]}]"}]
+        messages=messages + [
+            {"role": "user", "content": f"按照上述示例，回答这2个句子的情况。句子1: [{q[0]}]，句子2: [{q[1]}]"}
         ]
     )
     print(response.choices[0].message.content)

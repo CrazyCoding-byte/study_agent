@@ -1,5 +1,4 @@
 import json
-
 d={"name":"周杰伦","age":44,"gender":"男"}
 json_str='{"name": "周杰", "age": 44,"gender": "男"}'
 

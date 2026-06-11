@@ -1,6 +1,8 @@
 from openai import OpenAI
+import json
 client = OpenAI(
-    base_url="http://localhost:8000/v1",
+    base_url="http://localhost:11434/v1",
+    api_key="dummy"
 )
 schema=['日期','股票名称','开盘价','收盘价','成交量']
 examples_data = [       # 示例数据
@@ -52,11 +54,11 @@ messages = [
 
 for data in examples_data:
     messages.append({"role": "user",        "content": data["content"]})
-    messages.append({"role": "assistant",   "content": str(data["answers"])})
+    messages.append({"role": "assistant",   "content": json.dumps(data["answers"], ensure_ascii=False)})
     
 for q in questions:
     response=client.chat.completions.create(
-        model="qwen3:4b",
+        model="deepseek-r1:8b",
         messages=messages+[
             {"role": "user",        "content": f"按照上述示例，现在抽取这个句子的信息：{q}"}
         ]
